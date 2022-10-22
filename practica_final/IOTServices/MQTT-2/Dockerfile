@@ -1,0 +1,6 @@
+FROM debian:buster
+RUN apt upgrade && apt update -y
+RUN apt install mosquitto mosquitto-clients -y
+RUN touch /etc/mosquitto/passwd
+RUN mosquitto_passwd -b /etc/mosquitto/passwd dso_server dso_password
+CMD ["/usr/sbin/mosquitto", "-c", "/etc/mosquitto/mosquitto.conf"]
